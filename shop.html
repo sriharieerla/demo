@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shop | JD Collections</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo">
+  <span class="logo-box">JD</span> COLLECTIONS
+</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" style="font-weight: bold">Shop</a></li>
+      </ul>
+      <div class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i
+        ><span class="badge" id="cart-count">0</span>
+      </div>
+    </nav>
+
+    <header
+      style="
+        height: 40vh;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 60px;
+      "
+    >
+      <div style="text-align: center">
+        <h1 style="font-size: 3rem">The Collection</h1>
+        <p style="margin-top: 10px; color: #666">
+          Curated essentials for the discerning.
+        </p>
+      </div>
+    </header>
+
+    <section>
+      <div style="text-align: center; margin-bottom: 50px">
+        <button
+          class="btn-gold"
+          style="
+            padding: 10px 20px;
+            background: transparent;
+            color: #333;
+            border: 1px solid #333;
+          "
+          onclick="filterProducts('all')"
+        >
+          All
+        </button>
+        <button
+          class="btn-gold"
+          style="
+            padding: 10px 20px;
+            background: transparent;
+            color: #333;
+            border: 1px solid #333;
+          "
+          onclick="filterProducts('fashion')"
+        >
+          Fashion
+        </button>
+        <button
+          class="btn-gold"
+          style="
+            padding: 10px 20px;
+            background: transparent;
+            color: #333;
+            border: 1px solid #333;
+          "
+          onclick="filterProducts('gold')"
+        >
+          Gold
+        </button>
+      </div>
+
+      <div class="product-grid" id="shop-grid"></div>
+    </section>
+
+    <div class="cart-overlay" id="cart-sidebar">
+      <div class="cart-header">
+        <h3>Your Bag</h3>
+        <span onclick="toggleCart()" style="cursor: pointer; font-size: 1.5rem"
+          >&times;</span
+        >
+      </div>
+      <div class="cart-items" id="cart-items-container"></div>
+      <div class="cart-footer">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+          "
+        >
+          <span>Subtotal</span><span id="cart-total">$0.00</span>
+        </div>
+        <a
+          href="checkout.html"
+          class="btn-gold"
+          style="display: block; text-align: center; text-decoration: none"
+          >Checkout</a
+        >
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => loadShop());
+    </script>
+  </body>
+</html>

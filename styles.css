@@ -1,0 +1,736 @@
+/* ============================================================
+   IMPORTS & THEME VARIABLES
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
+
+:root {
+  --gold-gradient: linear-gradient(
+    135deg,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
+  --gold-text: #b38728;
+  --bg-dark: #0f0f0f;
+  --bg-light: #fdfbf7;
+  --glass: rgba(255, 255, 255, 0.85);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.05);
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Lato", sans-serif;
+  --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--bg-light);
+  color: #333;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: #111;
+  font-weight: 700;
+}
+.text-gold {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+.logo {
+  font-family: "Cinzel", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #111;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-box {
+  border: 2px solid var(--gold-text);
+  padding: 3px 10px;
+  color: var(--gold-text);
+  font-weight: bold;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 5%;
+  background: rgba(253, 251, 247, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 2000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+.nav-links a:hover {
+  color: var(--gold-text);
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  z-index: 3000;
+}
+
+/* ============================================================
+   MOBILE NAVIGATION (FIXED & WORKING)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+    color: #111;
+  }
+
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    background: #0f0f0f;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  .nav-links a {
+    color: #fff !important;
+    font-size: 2rem;
+    font-family: "Cinzel", serif;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-text) !important;
+    border-bottom-color: var(--gold-text);
+  }
+}
+
+.btn-gold {
+  padding: 14px 40px;
+  background: #111;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9rem;
+  transition: var(--transition);
+
+  display: inline-block; /* ⭐ FIX: Makes <a> visible */
+  z-index: 10; /* ⭐ FIX: Brings button above hero image */
+}
+
+.btn-gold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+
+  background: var(--gold-gradient);
+  z-index: -1;
+  transition: var(--transition);
+}
+
+.btn-gold:hover::before {
+  left: 0;
+}
+
+.btn-gold:hover {
+  color: #111;
+  background: transparent;
+  box-shadow: 0 10px 28px rgba(179, 135, 40, 0.35);
+}
+
+/* ============================================================
+   HERO SECTION (FIXED VISIBILITY)
+   ============================================================ */
+.hero {
+  height: 80vh; /* Reduced slightly for mobile */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 60px; /* Pushes it down below the fixed nav */
+}
+
+/* The Background Image */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* Use a high-quality fallback color in case image fails */
+  background: #f0ebd8
+    url("https://images.unsplash.com/photo-1571513722275-4b41940f54b8?q=80&w=1920&auto=format&fit=crop")
+    center/cover no-repeat;
+  z-index: -2;
+  opacity: 0.8; /* Slight fade so text pops */
+}
+
+/* The Content Box */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem; /* Good size for mobile */
+  font-family: "Playfair Display", serif;
+  color: #111; /* Changed to Black for visibility */
+  line-height: 1.2;
+  margin-bottom: 20px;
+
+  /* Removed opacity: 0 to ensure it is ALWAYS visible */
+  opacity: 1;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: #444; /* Dark Grey */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  /* Force Visible */
+  opacity: 1;
+}
+
+/* Gold Text Highlight */
+.text-gold {
+  background: linear-gradient(135deg, #b38728, #fcf6ba, #aa771c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+/* ============================================================
+   SECTIONS & HEADERS
+   ============================================================ */
+section {
+  padding: 120px 6%;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+.section-header h2 {
+  font-size: 3.2rem;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-header span {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold-text);
+}
+/* ============================================================
+   PRODUCT GRID (Fixed Visibility)
+   ============================================================ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding-bottom: 50px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative; /* Important for button positioning */
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.product-img-box {
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: #f0f0f0; /* Fallback color if image loads slow */
+}
+
+.product-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.product-card:hover .product-img-box img {
+  transform: scale(1.1);
+}
+
+/* --- THE FIX: MAKE BUTTON VISIBLE --- */
+.add-btn-hover {
+  position: absolute;
+  bottom: -60px; /* Start hidden below */
+  left: 0;
+  width: 100%;
+
+  /* Make it visible: Dark background with Gold text */
+  background: #111;
+  color: var(--gold-text);
+
+  padding: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 10; /* Ensure it is on top */
+}
+
+.product-card:hover .add-btn-hover {
+  bottom: 0; /* Slide up on hover */
+  color: #ccc;
+}
+
+.product-details {
+  text-align: center;
+  padding: 20px 15px;
+  background: white;
+  z-index: 20;
+  position: relative;
+}
+
+.product-details h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.price {
+  color: var(--gold-text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: block;
+}
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about-split {
+  display: flex;
+  gap: 50px;
+}
+.about-img img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.about-text p {
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* ============================================================
+   FAQ (Improved)
+   ============================================================ */
+.faq-container {
+  max-width: 800px;
+  margin: auto;
+}
+.faq-item {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+}
+.faq-item.open {
+  border-left: 4px solid var(--gold-text);
+}
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.5s ease;
+  color: #666;
+  padding-right: 10px;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  margin-top: 15px;
+}
+
+/* ============================================================
+   CONTACT FORM (Enhanced)
+   ============================================================ */
+.contact-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.contact-info {
+  flex: 1;
+  padding: 40px;
+  background: #fff;
+  border-left: 4px solid var(--gold-text);
+  border-radius: 15px;
+  box-shadow: var(--shadow-soft);
+}
+.contact-form {
+  flex: 2;
+}
+.form-group {
+  margin-bottom: 30px;
+  position: relative;
+}
+.form-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 12px 0;
+  background: transparent;
+  outline: none;
+}
+.form-input:focus {
+  border-bottom-color: var(--gold-text);
+}
+.form-label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  color: #aaa;
+  transition: 0.3s;
+}
+.form-input:focus ~ .form-label,
+.form-input:valid ~ .form-label {
+  top: -10px;
+  font-size: 0.8rem;
+  color: var(--gold-text);
+}
+
+/* ============================================================
+   CART SIDEBAR
+   ============================================================ */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100%;
+  background: #fff;
+  transition: 0.5s;
+  padding: 30px;
+  z-index: 3000;
+  box-shadow: -10px 0 25px rgba(0, 0, 0, 0.1);
+}
+.cart-overlay.open {
+  right: 0;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   MOBILE OPTIMIZATION
+   ============================================================ */
+@media (max-width: 768px) {
+  .about-split {
+    flex-direction: column;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  section {
+    padding: 80px 5%;
+  }
+}
+/* ============================================================
+   PREMIUM LUXURY NAVIGATION BAR (UPDATED)
+   ============================================================ */
+
+/* floating glass navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+
+  transition: 0.4s ease;
+  z-index: 2000;
+}
+
+/* navbar on scroll gets gold glow */
+nav.scrolled {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(179, 135, 40, 0.4);
+  box-shadow: 0 20px 40px rgba(179, 135, 40, 0.15);
+}
+
+/* -------- LOGO STYLE -------- */
+.logo {
+  font-family: "Cinzel", serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  letter-spacing: 3px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-box {
+  padding: 4px 12px;
+  border: 2px solid var(--gold-text);
+  color: var(--gold-text);
+  font-weight: bold;
+  font-size: 1.1rem;
+
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(179, 135, 40, 0.25);
+  transition: 0.3s ease;
+}
+
+.logo:hover .logo-box {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(179, 135, 40, 0.5);
+}
+
+/* -------- NAV LINKS -------- */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 45px;
+}
+
+.nav-links a {
+  position: relative;
+  font-size: 0.9rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  padding-bottom: 5px;
+  transition: 0.3s ease;
+}
+
+/* gold line animation */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--gold-gradient);
+  transition: 0.35s ease;
+  border-radius: 10px;
+}
+
+.nav-links a:hover {
+  color: var(--gold-text);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* -------- NAV ICONS -------- */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-icons i {
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  color: #333;
+}
+
+.nav-icons i:hover {
+  color: var(--gold-text);
+  transform: scale(1.15);
+}
+
+/* ============================================================
+   MOBILE NAV (PREMIUM DARK MODE)
+   ============================================================ */
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  z-index: 5000;
+}
+
+.hamburger i {
+  font-size: 1.9rem;
+  transition: 0.3s ease;
+}
+
+/* mobile menu */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    inset: 0;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    background: #0c0c0c;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.1);
+    transition: 0.35s ease-in-out;
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: scale(1);
+  }
+
+  .nav-links a {
+    color: white !important;
+    font-size: 2.1rem;
+    font-family: "Cinzel", serif;
+
+    padding-bottom: 12px;
+    width: max-content;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-text) !important;
+    border-bottom-color: var(--gold-text);
+  }
+}

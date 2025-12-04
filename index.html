@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JD Collections | Timeless Luxury</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo">
+        <span class="logo-box">JD</span> COLLECTIONS
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" onclick="toggleMobileMenu()">Home</a></li>
+        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop</a></li>
+        <li>
+          <a href="index.html#about" onclick="toggleMobileMenu()">Our Story</a>
+        </li>
+        <li>
+          <a href="index.html#faq" onclick="toggleMobileMenu()">Journal</a>
+        </li>
+        <li>
+          <a href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
+        </li>
+      </ul>
+
+      <div class="nav-icons">
+        <div class="cart-btn" onclick="toggleCart()">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="badge" id="cart-count">0</span>
+        </div>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+
+    <header id="home" class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <p>EST. 2025</p>
+        <h1>Elegance is an<br /><span class="text-gold">Attitude</span></h1>
+        <br />
+        <a href="shop.html" class="btn-gold">Explore Collection</a>
+      </div>
+    </header>
+
+    <section id="featured">
+      <div class="section-header reveal">
+        <span>Curated For You</span>
+        <h2>New Arrivals</h2>
+      </div>
+      <div class="product-grid" id="featured-grid"></div>
+      <div style="text-align: center; margin-top: 50px">
+        <a href="shop.html" class="btn-gold">View All Products</a>
+      </div>
+    </section>
+
+    <section id="about" style="background: white">
+      <div class="about-split reveal">
+        <div class="about-img">
+          <img
+            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop"
+            alt="Craftsmanship"
+          />
+        </div>
+        <div class="about-text">
+          <span style="color: var(--gold-text); letter-spacing: 2px"
+            >THE ATELIER</span
+          >
+          <h2 style="font-size: 3rem; margin: 20px 0">
+            Where Tradition Meets Modernity
+          </h2>
+          <p>
+            JD Collections wasn't just built to sell products; it was created to
+            curate a lifestyle. Born in the heart of artisanal heritage, we
+            blend the richness of 1-gram gold artistry with contemporary
+            boutique fashion.
+          </p>
+          <p>
+            Every piece in our boutique tells a story of craftsmanship, designed
+            for the modern individual who values elegance above all else.
+          </p>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Signature_sample.svg/1200px-Signature_sample.svg.png"
+            style="width: 150px; opacity: 0.5; margin-top: 20px"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-header reveal">
+        <span>Information</span>
+        <h2>Common Questions</h2>
+      </div>
+      <div class="faq-container reveal">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Do you ship internationally?</span>
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            Yes, we provide premium insured shipping to over 50 countries
+            globally.
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Is the gold jewellery authentic?</span>
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            Our pieces are crafted with high-grade 1-gram gold plating on
+            premium alloy, designed to look and feel like solid gold with proper
+            care.
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>What is the return policy?</span> <i class="fas fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            We offer a 14-day pristine return policy. Items must be unworn and
+            in original packaging.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="background: white">
+      <div class="section-header reveal">
+        <span>Concierge</span>
+        <h2>Get in Touch</h2>
+      </div>
+      <div class="contact-wrapper reveal">
+        <div class="contact-info">
+          <h3>Visit Us</h3>
+          <p style="margin-top: 15px; color: #666">
+            101 ongole<br />India, AP 500006
+          </p>
+          <br />
+          <h3>Contact</h3>
+          <p style="margin-top: 15px; color: #666">
+            connect@jdcollections.com<br />+91 9876543210
+          </p>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" class="form-input" required />
+            <label class="form-label">Your Name</label>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-input" required />
+            <label class="form-label">Email Address</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-input" required />
+            <label class="form-label">Message</label>
+          </div>
+          <button type="submit" class="btn-gold">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <footer
+      style="
+        background: #111;
+        color: #fff;
+        padding: 50px 5%;
+        text-align: center;
+      "
+    >
+      <h2 style="color: #fff; margin-bottom: 20px">JD COLLECTIONS</h2>
+      <div style="margin-bottom: 30px; font-size: 1.5rem">
+        <i class="fab fa-instagram" style="margin: 0 10px"></i>
+        <i class="fab fa-facebook" style="margin: 0 10px"></i>
+        <i class="fab fa-pinterest" style="margin: 0 10px"></i>
+      </div>
+      <p style="color: #555; font-size: 0.8rem">
+        &copy; 2025 JD Collections. All Rights Reserved.
+      </p>
+    </footer>
+
+    <div class="cart-overlay" id="cart-sidebar">
+      <div class="cart-header">
+        <h3>Your Bag</h3>
+        <span style="cursor: pointer; font-size: 1.5rem" onclick="toggleCart()"
+          >&times;</span
+        >
+      </div>
+      <div class="cart-items" id="cart-items-container"></div>
+      <div class="cart-footer">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+          "
+        >
+          <span>Subtotal</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <a
+          href="checkout.html"
+          class="btn-gold"
+          style="display: block; text-align: center; text-decoration: none"
+          >Checkout</a
+        >
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Specific to Index: Load only 3 featured products
+      document.addEventListener("DOMContentLoaded", () => {
+        loadFeatured();
+      });
+    </script>
+  </body>
+</html>
